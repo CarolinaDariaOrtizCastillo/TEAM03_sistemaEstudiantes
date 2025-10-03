@@ -50,4 +50,32 @@ public class EstudianteDAO {
             return false;
         }
     }
+
+    public boolean actualizar(Estudiante e) {
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(SQL_UPDATE)) {
+            ps.setString(1, e.getNombre());
+            ps.setString(2, e.getApellidos());
+            ps.setString(3, e.getDocumento());
+            ps.setString(4, e.getNumeroDocumento());
+            ps.setString(5, e.getInstitucion());
+            ps.setString(6, e.getGrado());
+            ps.setInt(7, e.getIdEstudiante());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("Error en actualizar(): " + ex.getMessage());
+            return false;
+        }
+    }
+
+    public boolean eliminar(int id) {
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(SQL_DELETE)) {
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.err.println("Error en eliminar(): " + ex.getMessage());
+            return false;
+        }
+    }
 }

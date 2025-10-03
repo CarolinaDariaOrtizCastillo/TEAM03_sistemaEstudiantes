@@ -9,9 +9,9 @@ import java.sql.DriverManager;
 
 public class ConexionBD {
 
-    private static final String URL = "jdbc:mysql://54.242.80.184:3306/bd_formulario";
-    private static final String USER = "carolina";
-    private static final String PASS = "Carolina_2025";
+    private static final String URL = "jdbc:mysql://localhost:3307/bd_formulario";
+    private static final String USER = "root";
+    private static final String PASS = "carolinaortiz";
 
     public static Connection getConexion() {
         Connection con = null;

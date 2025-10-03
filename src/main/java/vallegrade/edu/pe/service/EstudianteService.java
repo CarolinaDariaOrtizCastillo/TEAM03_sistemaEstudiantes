@@ -15,4 +15,12 @@ public class EstudianteService {
     public boolean guardarEstudiante(Estudiante e) {
         return dao.insertar(e);
     }
+
+    public boolean actualizarEstudiante(Estudiante e) {
+        return dao.actualizar(e);
+    }
+
+    public boolean eliminarEstudiante(int id) {
+        return dao.eliminar(id);
+    }
 }

@@ -8,45 +8,43 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class FrmEstudiante extends JFrame {
-    private JTable tabla;
+    public JTable tabla;
     private DefaultTableModel modelo;
-    private JButton btnActualizar;
+
+    public JButton btnAgregar = new JButton("Agregar");
+    public JButton btnModificar = new JButton("Modificar");
+    public JButton btnEliminar = new JButton("Eliminar");
+    public JButton btnActualizar = new JButton("Actualizar");
+
     private EstudianteController controller;
 
     public FrmEstudiante() {
         setTitle("Gestión de Estudiantes");
-        setSize(700, 400);
+        setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Modelo de tabla
         modelo = new DefaultTableModel(
                 new String[]{"ID", "Nombre", "Apellidos", "Documento", "Número", "Institución", "Grado"},
                 0
         );
         tabla = new JTable(modelo);
 
-        // Botón actualizar
-        btnActualizar = new JButton("Actualizar lista");
-
-        // Panel inferior con botón
         JPanel panelBotones = new JPanel();
+        panelBotones.add(btnAgregar);
+        panelBotones.add(btnModificar);
+        panelBotones.add(btnEliminar);
         panelBotones.add(btnActualizar);
 
-        // Layout
         add(new JScrollPane(tabla), "Center");
         add(panelBotones, "South");
 
-        // Crear controlador
+        // Controlador
         controller = new EstudianteController(this);
-
-        // Evento del botón
-        btnActualizar.addActionListener(e -> controller.cargarEstudiantes());
     }
 
-    // Mostrar estudiantes en tabla
     public void mostrarEstudiantes(List<Estudiante> lista) {
-        modelo.setRowCount(0); // limpiar tabla
+        modelo.setRowCount(0);
         for (Estudiante est : lista) {
             modelo.addRow(new Object[]{
                     est.getIdEstudiante(),
